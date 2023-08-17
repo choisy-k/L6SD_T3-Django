@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+{% block title %}View List{% endblock %}
+{% block content %}
+<style>
+    input {
+        margin-right: 10px;
+    }
+
+    ul {
+        list-style-type: none
+    }
+</style>
+
+    <div class="container">
+        <h1 class="mt-4">Your Available List</h1>
+        <h3>{{ls.name}}</h3>
+        <form method="post" action="#">
+            {% csrf_token %}
+            <ul>
+                {% for item in ls.item_set.all %}
+                    {% if item.complete == True %}
+                        <li><input type="checkbox", value="clicked", name="c{{item.id}}" checked>{{item.text}}</li>
+                    {% else %}
+                        <li><input type="checkbox", value="clicked", name="c{{item.id}}">{{item.text}}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <button class="btn btn-primary" type="submit", name="newItem", value="newItem">Add Item</button>	
+            <input type="text", name="new">
+            <br><br>
+            <button class="btn btn-primary" type="submit", name="save", value="save">Save</button>
+        </form>
+    </div>
+    
+{% endblock %}

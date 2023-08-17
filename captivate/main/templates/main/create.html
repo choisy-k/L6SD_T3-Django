@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% block title %}New List{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<link rel="stylesheet" href="../static/contact.css" type="text/css">
+
+<style>
+    label {
+        margin-bottom: 10px;
+    }
+    input {
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="container">
+    <div class="text-center mt-4"><h3>Create a New To-Get List</h3></div>
+	<form method="POST" class="form-group">
+		{% csrf_token %}
+		{{form|crispy}}
+        <div class="text-center"><button type="submit" class="btn btn-primary">Create List</button></div> 
+	</form>
+</div>
+
+{% endblock %}
+
+{% comment %} 
+Note:
+Lists can still be accessed by everyone.
+You can't edit the checkbox for now.
+I want the shop_note to lists all created lists by the user, and they must insert an id of the list to add items. Also provide a link to create new list. Or maybe just combine these pages, idk
+{% endcomment %}
